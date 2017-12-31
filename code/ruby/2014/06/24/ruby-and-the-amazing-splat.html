@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Ruby and the Amazing Splat *</title>
+  <meta name="description" content="On occasion, while perusing other people's code and marveling at the many ways there are to solve even simple problems, I've come across a mysterious asteris...">
+
+
+  <link rel="stylesheet" href="/css/app.css">
+  <link href="http://fonts.googleapis.com/css?family=Josefin+Sans:400,700,600,300" media="screen" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="/css/superslides.css"/>
+  <link rel="stylesheet" href="/css/slick-theme.css"/>
+  <link rel="stylesheet" href="/css/slick.css"/>
+  <link rel="stylesheet" href="/css/animate.css"/>
+  <link rel="stylesheet" href="/css/linea-styles.css"/>
+  <link rel="stylesheet" href="/css/linea-arrows-styles.css"/>
+  <link rel="stylesheet" href="/css/font-awesome.css"/>
+  <link rel="stylesheet" href="/css/chivo.css"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/responsive.css"/>
+
+  <script src="/bower_components/modernizr/modernizr.js"></script>
+
+  <link rel="canonical" href="/code/ruby/2014/06/24/ruby-and-the-amazing-splat.html">
+  <link rel="alternate" type="application/rss+xml" title="L'AVAR" href="/feed.xml">
+</head>
+
+
+  <body>
+
+    <div class='contain-to-grid sticky transparent'>
+  <nav class='top-bar' data-options='sticky_on: large' data-topbar=''>
+    <ul class='title-area'>
+      <li class="">
+        <h1>
+          <a href='/index.html'>
+            <span>L.</span>avar
+          </a>
+        </h1>
+      </li>
+    </ul>
+    <div id="menu-toggler" class="right">
+      <a href='#'>
+        <i class="icon-arrows-hamburger-2"></i>
+      </a>
+    </div>
+    <section class='top-bar-section closed'>
+      <ul class='right'>
+
+        
+          
+
+          
+            <li class="has-dropdown ">
+              <a href="/index.html">Home</a>
+              <ul class='dropdown'>
+                
+                  <li>
+                    <a href="/index.html">Home Studio</a>
+                  </li>
+                
+                  <li>
+                    <a href="/index-personal.html">Home Personal</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+
+          
+            <li class="has-dropdown ">
+              <a href="/about.html">Pages</a>
+              <ul class='dropdown'>
+                
+                  <li>
+                    <a href="/about.html">About Us</a>
+                  </li>
+                
+                  <li>
+                    <a href="/services.html">Services</a>
+                  </li>
+                
+                  <li>
+                    <a href="/services-2.html">Services 2</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+
+          
+            <li class="has-dropdown ">
+              <a href="/portfolio.html">Works</a>
+              <ul class='dropdown'>
+                
+                  <li>
+                    <a href="/portfolio.html">Portfolio Style 1</a>
+                  </li>
+                
+                  <li>
+                    <a href="/portfolio-2.html">Portfolio Style 2</a>
+                  </li>
+                
+                  <li>
+                    <a href="/portfolio-item.html">Single Page 1</a>
+                  </li>
+                
+                  <li>
+                    <a href="/portfolio-item-2.html">Single Page 2</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+
+          
+            <li class="">
+              <a href="/contact.html">Contact</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="has-dropdown ">
+              <a href="/blog.html">Blog</a>
+              <ul class='dropdown'>
+                
+                  <li>
+                    <a href="/blog/">Blog</a>
+                  </li>
+                
+                  <li>
+                    <a href="/travel/2016/04/06/beautiful-day.html">Single Page</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+
+      </ul>
+    </section>
+  </nav>
+</div>
+
+
+    <div class="full">
+  <div class="post single">
+    
+      <div class="post-header" style="background-image: url(/images/@stock/post-2.jpg)">
+      </div>
+    
+    <div class="four spacing"></div>
+    <div class="row">
+      <div class="large-9 large-centered columns">
+        <div class="post-content">
+          <h2>Ruby and the Amazing Splat *</h2>
+          <p class='info'>
+            
+              <span>
+                
+                  <a href="#">Code</a>
+                  
+                      ,
+                  
+                
+                  <a href="#">Ruby</a>
+                  
+                
+              </span>
+              /
+            
+            <span>June 24, 2014</span>
+            /
+            <span><a href="#">2 Comments</a></span>
+          </p>
+          <p>On occasion, while perusing other people’s code and marveling at the many ways there are to solve even simple problems, I’ve come across a mysterious asterisk that appears to have magical properties.</p>
+
+<p>It most commonly shows up attached to an argument in a method signature like this:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">things_liked</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="o">*</span><span class="n">items</span><span class="p">)</span>
+  <span class="n">items</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> likes </span><span class="si">#{</span><span class="n">item</span><span class="si">}</span><span class="s2">."</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>That method structure was very familiar, but I was never entirely sure about the asterisk’s purpose.  I grabbed a couple variables, tossed them in, and was surprised to see that the method behaved exactly how it would have behaved if the asterisk wasn’t there.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">things_liked</span><span class="p">(</span><span class="s2">"Jessica"</span><span class="p">,</span> <span class="s2">"hyenas"</span><span class="p">)</span>
+<span class="c1">#=&gt; Jessica likes hyenas.</span>
+</code></pre></div></div>
+
+<p>It seemed unlikely that the little guy just hangs out and does nothing, so I dug further and discovered that it’s called the “splat operator” and it does some amazing things.</p>
+
+<p>Splat can be used in methods when you aren’t sure how many variables will be passed in.  Perhaps Jessica likes many things but hyenas are more simple in their passions.  If you use the power of splat, you can handle these variations in a single method.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jess = ["hyenas", "ruby", "long runs"]
+hyena = ["crunchy bones"]
+
+things_liked("Jessica", jess)
+#=&gt; Jessica likes hyenas.
+#=&gt; Jessica likes ruby.
+#=&gt; Jessica likes long runs.
+
+things_liked("Hyena", hyena)
+#=&gt; Hyena likes crunchy bones.
+</code></pre></div></div>
+
+<p>That alone should be enough to earn splat its place in your future code…but splat is no lightweight and there’s so much more it can do!</p>
+
+<p>I found a great gist from <a href="https://github.com/rubyspec/rubyspec/blob/master/language/splat_spec.rb">RubySpec</a> that covers the many wonderful (and occassionally odd) behaviors of splat.</p>
+
+<p>Here are a few that I found particularly noteworthy.</p>
+
+<p>Splat automatically puts the values it is called on in an array…</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1">#=&gt; 1</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="mi">1</span>
+<span class="c1">#=&gt; [1]</span>
+</code></pre></div></div>
+
+<p>…unless you splat nil.  Splat nil and you get an empty array.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="kp">nil</span>
+<span class="c1">#=&gt; []</span>
+</code></pre></div></div>
+
+<p>It can be used to create hashes from arrays.  All of the items with even indexes become keys while the odds become values.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"David"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"Lillith"</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"Jessica"</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"Lucas"</span><span class="p">]</span>
+
+<span class="no">Hash</span><span class="p">[</span><span class="o">*</span><span class="n">array</span><span class="p">]</span>
+
+<span class="c1">#=&gt; {1 =&gt; "David", 2 =&gt; "Lillith", 3 =&gt; "Jessica", 4 =&gt; "Lucas"}</span>
+</code></pre></div></div>
+
+<p>Splat can also come in handy when you want to gather up all but the first, last or first and last items in an array.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">first</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="c1">#=&gt; first = 1, rest = [2,3,4]</span>
+<span class="o">*</span><span class="n">rest</span><span class="p">,</span> <span class="n">last</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="c1">#=&gt; rest = [1,2,3], last = 4</span>
+<span class="n">first</span><span class="p">,</span> <span class="o">*</span><span class="n">center</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="c1">#=&gt; first = 1, center = [2,3], last = 4</span>
+</code></pre></div></div>
+
+<p>With visions of splat operators running through my head, I decided to experiment and see if it could be used to grab the first character in a string (which happened to be necessary for an assignment I was working on).  With a little bit of trial and error, I came up with the following:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">y</span> <span class="o">=</span> <span class="s2">"hello"</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=&gt;</span> <span class="s2">"h"</span>
+<span class="n">y</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"e"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">,</span> <span class="s2">"o"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>WHICH TOTALLY WORKS!!!!</p>
+
+<p>But, if we’re going to be responsible coders, we need to remember that just because we can do something doesn’t mean we should.  Unless we want our code to confuse people (including ourselves when we come back to it in a few months and wonder what the heck we were doing), we should use the right tools for the job.</p>
+
+<p>So we’ll have to say no to peppering our code with splat just for the pure joy we get from yelling splat every time we type it but we’ll never again have to be afraid to use it appropriately in our code.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="full light-grey">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        Comments
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <div class='comments-wrapper'>
+        <ul class='comments'>
+          <li>
+            <div class='meta'>
+              <p class='avatar'>
+                <img width="39" height="39" alt="" src="/images/avatar.png" />
+              </p>
+              <p class='info'>
+                <span class='name'>Amy</span>
+                <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+                <a href='#comment-form'>Reply</a>
+              </p>
+            </div>
+            <p>
+              Dolor consectetur et dolorem distinctio beatae doloribus magni ducimus reprehenderit voluptatibus ex officia quia. cum facere est quas provident ea nam quibusdam deserunt quis. error quis nihil ad quia corrupti asperiores labore quis error ut debitis nobis iste. laborum sint qui aut asperiores numquam itaque ea illum
+            </p>
+          </li>
+          <li>
+            <div class='meta'>
+              <p class='avatar'>
+                <img width="39" height="39" alt="" src="/images/avatar.png" />
+              </p>
+              <p class='info'>
+                <span class='name'>Amy</span>
+                <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+                <a href='#comment-form'>Reply</a>
+              </p>
+            </div>
+            <p>Quam cumque magni voluptas. possimus neque in voluptates.</p>
+            <ul class='children'>
+              <li>
+                <div class='meta'>
+                  <p class='avatar'>
+                    <img width="39" height="39" alt="" src="/images/avatar.png" />
+                  </p>
+                  <p class='info'>
+                    <span class='name'>Amy</span>
+                    <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+                    <a href='#comment-form'>Reply</a>
+                  </p>
+                </div>
+                <p>Quas ut vel nobis veniam explicabo consequatur. iusto nisi eius iure voluptas perferendis omnis quod excepturi et eum. sed porro tenetur ut unde suscipit optio ipsum molestiae</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <div class='meta'>
+              <p class='avatar'>
+                <img width="39" height="39" alt="" src="/images/avatar.png" />
+              </p>
+              <p class='info'>
+                <span class='name'>Amy</span>
+                <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+                <a href='#comment-form'>Reply</a>
+              </p>
+            </div>
+            <p>Saepe laudantium ipsum labore dolorum officia et odio debitis et. consequatur non veniam deserunt rerum nihil sint est</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="full">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        Your comments
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <div class='two spacing'></div>
+      <div id='comments-form'>
+        <form class="dark" accept-charset='UTF-8' action='#' method='post'>
+          <p class='name'>
+            <input class='input-text required' id='name' name='name' type='text' placeholder='Name'>
+          </p>
+          <p class='email'>
+            <input class='input-text required' id='email' name='email' type='text' placeholder='Email'>
+          </p>
+          <p class='message'>
+            <textarea class='required' id='message' name='message' placeholder='Message'></textarea>
+          </p>
+          <div class='spacing'></div>
+          <p>
+            <input class='button boxed small' type='submit' value='Send Message'>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="full light-grey">
+  <nav class='wrapper'>
+    <div class="row">
+      <div class="small-6 columns">
+        
+          <a class="previous button boxed black" href='/open-source/2014/06/10/contributing-to-open-source.html'>
+            <i class='fa fa-angle-left'></i> Previous post
+          </a>
+        
+
+      </div>
+      <div class="small-6 columns">
+        
+          <a class="next button boxed black" href='/base/teaching/2014/06/29/a-fun-way-to-help-out.html'>
+            Next post<i class='fa fa-angle-right'></i>
+          </a>
+        
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+    <div class="full no-padding footer brown centered-text">
+  <div class="four spacing"></div>
+  <div class="row">
+    <div class="small-12 columns">
+      <ul class="socials">
+        <li><a href="#"><i class='fa fa-twitter'></i></a></li>
+        <li><a href="#"><i class='fa fa-linkedin'></i></a></li>
+      </ul>
+      <p>Copyright ©2015 L'AVAR.</p>
+      <p>All rights reserved.</p>
+      <div class="four spacing"></div>
+      <p class="back-to-top"><a href="#"><i class="fa fa-chevron-up"></i>Back to top</a></p>
+    </div>
+  </div>
+  <div class="spacing"></div>
+</div>
+
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/foundation/js/foundation.min.js"></script>
+<script src="/js/jquery.superslides.min.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/jquery.validate.js"></script>
+<script src="/bower_components/countto/jquery.countTo.js"></script>
+<script src="/bower_components/appear/jquery.appear.js"></script>
+<script src="/js/app.js"></script>
+
+
+  </body>
+
+</html>

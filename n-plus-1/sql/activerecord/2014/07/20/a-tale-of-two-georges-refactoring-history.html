@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>A Tale of Two Georges: Refactoring History with the N+1 Problem</title>
+  <meta name="description" content="The lower Manhattan 'hood of the Flatiron School is steeped in history.  But not just any history - Revolutionary History.  And, as any red-blooded American ...">
+
+
+  <link rel="stylesheet" href="/css/app.css">
+  <link href="http://fonts.googleapis.com/css?family=Josefin+Sans:400,700,600,300" media="screen" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="/css/superslides.css"/>
+  <link rel="stylesheet" href="/css/slick-theme.css"/>
+  <link rel="stylesheet" href="/css/slick.css"/>
+  <link rel="stylesheet" href="/css/animate.css"/>
+  <link rel="stylesheet" href="/css/linea-styles.css"/>
+  <link rel="stylesheet" href="/css/linea-arrows-styles.css"/>
+  <link rel="stylesheet" href="/css/font-awesome.css"/>
+  <link rel="stylesheet" href="/css/chivo.css"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/responsive.css"/>
+
+  <script src="/bower_components/modernizr/modernizr.js"></script>
+
+  <link rel="canonical" href="/n-plus-1/sql/activerecord/2014/07/20/a-tale-of-two-georges-refactoring-history.html">
+  <link rel="alternate" type="application/rss+xml" title="L'AVAR" href="/feed.xml">
+</head>
+
+
+  <body>
+
+    <div class='contain-to-grid sticky transparent'>
+  <nav class='top-bar' data-options='sticky_on: large' data-topbar=''>
+    <ul class='title-area'>
+      <li class="">
+        <h1>
+          <a href='/index.html'>
+            <span>L.</span>avar
+          </a>
+        </h1>
+      </li>
+    </ul>
+    <div id="menu-toggler" class="right">
+      <a href='#'>
+        <i class="icon-arrows-hamburger-2"></i>
+      </a>
+    </div>
+    <section class='top-bar-section closed'>
+      <ul class='right'>
+
+        
+          
+
+          
+            <li class="has-dropdown ">
+              <a href="/index.html">Home</a>
+              <ul class='dropdown'>
+                
+                  <li>
+                    <a href="/index.html">Home Studio</a>
+                  </li>
+                
+                  <li>
+                    <a href="/index-personal.html">Home Personal</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+
+          
+            <li class="has-dropdown ">
+              <a href="/about.html">Pages</a>
+              <ul class='dropdown'>
+                
+                  <li>
+                    <a href="/about.html">About Us</a>
+                  </li>
+                
+                  <li>
+                    <a href="/services.html">Services</a>
+                  </li>
+                
+                  <li>
+                    <a href="/services-2.html">Services 2</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+
+          
+            <li class="has-dropdown ">
+              <a href="/portfolio.html">Works</a>
+              <ul class='dropdown'>
+                
+                  <li>
+                    <a href="/portfolio.html">Portfolio Style 1</a>
+                  </li>
+                
+                  <li>
+                    <a href="/portfolio-2.html">Portfolio Style 2</a>
+                  </li>
+                
+                  <li>
+                    <a href="/portfolio-item.html">Single Page 1</a>
+                  </li>
+                
+                  <li>
+                    <a href="/portfolio-item-2.html">Single Page 2</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+
+          
+            <li class="">
+              <a href="/contact.html">Contact</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="has-dropdown ">
+              <a href="/blog.html">Blog</a>
+              <ul class='dropdown'>
+                
+                  <li>
+                    <a href="/blog/">Blog</a>
+                  </li>
+                
+                  <li>
+                    <a href="/travel/2016/04/06/beautiful-day.html">Single Page</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+
+      </ul>
+    </section>
+  </nav>
+</div>
+
+
+    <div class="full">
+  <div class="post single">
+    
+      <div class="post-header" style="background-image: url(/images/@stock/post-6.jpg)">
+      </div>
+    
+    <div class="four spacing"></div>
+    <div class="row">
+      <div class="large-9 large-centered columns">
+        <div class="post-content">
+          <h2>A Tale of Two Georges: Refactoring History with the N+1 Problem</h2>
+          <p class='info'>
+            
+              <span>
+                
+                  <a href="#">N-plus-1</a>
+                  
+                      ,
+                  
+                
+                  <a href="#">Sql</a>
+                  
+                      ,
+                  
+                
+                  <a href="#">Activerecord</a>
+                  
+                
+              </span>
+              /
+            
+            <span>July 20, 2014</span>
+            /
+            <span><a href="#">2 Comments</a></span>
+          </p>
+          <p>The lower Manhattan ‘hood of the Flatiron School is steeped in history.  But not just any history - Revolutionary History.  And, as any red-blooded American with a patriotic tattoo will attest, there is no more historicky history than that because…<strong>‘Murica</strong>.</p>
+
+<p><img class="img-center" src="/images/posts/murica.jpg" width="500px" height="900px" alt="'Murica'" title="Murica" /></p>
+
+<p>The date is July 9, 1776.  Tension has been rising between Great Britain and the colonies over critical issues like taxes, tea and how to spell color.  <img class="img-right" src="/images/posts/statue-w-speech.png" width="400px" height="750px" alt="'King George and His Statue'" title="Artist Rendition of Statue of King George" />  The epicenter of much of this tension is Bowling Green park.  Six years earlier, a 4,000 pound statue of King George astride a horse in Roman garb had been erected in the park.  This proved to be too large of a target for the local rabble who couldn’t resist vandalizing the statue on their way home from their nightly pub crawls.  In response, the government passed anti-vandalism laws and surrounded the park with a cast iron fence.  That fence looks a lot like the one that’s there today - but newer - about 241 years newer.</p>
+
+<p>Now, in July of 1776, war is imminent.  The British are amassing a force of redcoats and Hessian mercenaries on Staten Island in preparation for an invasion (proving that even back then, nothing good came from Staten Island).  George Washington addresses a crowd that has gathered in front of City Hall.  “Yo!  We’ve dissolved the connection between this country and Great Britain. The United Colonies of North America are now free and independent states.”  Then he read the Declaration of Independence.</p>
+
+<p>These days, we yawn when someone starts blathering on about the Declaration, but back then, it was exciting.  The crowd was pumped and needed to do something to celebrate their new freedom.  RIOT!!!  So they stormed down to Bowling Green, tore down the statue of King George, paraded the head around on a pike and sent the rest to Connecticut to be made into musket balls.</p>
+
+<p>Things were about to get real!</p>
+
+<p>As you can imagine, King George did not appreciate the desecration of his statue and he was pretty sure it was a violation of the anti-vandalism laws passed three years earlier.  He knew it was time for a colonial beat down.  The king was a planner though and he wanted to make sure his Army was ready for the task ahead of them.</p>
+
+<p>“Smythe!” he bellowed in a kingly fashion.  “Gather the troops.  Once they’re gathered, poll each of them to find out where they are currently stationed.”</p>
+
+<p>Smythe was an extremely forward-thinking fellow and decided to build a Rails app with ActiveRecord in order make the data as accessible as possible to the king.</p>
+
+<p>His models looked a little something like this:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#in the models</span>
+
+<span class="c1">#Soldier model</span>
+<span class="k">class</span> <span class="nc">Soldier</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">belongs_to</span> <span class="ss">:unit</span>
+<span class="k">end</span>
+ 
+<span class="c1">#Unit model</span>
+<span class="k">class</span> <span class="nc">Unit</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">has_many</span> <span class="ss">:soldiers</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>While he was forward-thinking, Smythe wasn’t too database savvy and he set up his controllers and view like this.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#in the controller</span>
+<span class="vi">@royal_army</span> <span class="o">=</span> <span class="no">Soldier</span><span class="p">.</span><span class="nf">all</span>
+ 
+<span class="c1">#in the view</span>
+<span class="vi">@royal_army</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">soldier</span><span class="o">|</span>
+    <span class="no">Name</span><span class="p">:</span> <span class="o">&lt;</span><span class="sx">%= soldier.name %&gt; 
+    Location:&lt;%=</span> <span class="n">soldier</span><span class="p">.</span><span class="nf">unit</span><span class="p">.</span><span class="nf">location</span> <span class="sx">%&gt;
+end
+</span></code></pre></div></div>
+
+<p>On the first call to the database, Smythe’s program gathers all the soldiers.  However, it has to make another call to the database for every single soldier in order to determine the soldier’s location.  For those of you keeping track, that’s N + 1 calls to the database, and, given the latency of databases in 1776, that’s a problem.</p>
+
+<p>The app will definitely work, but it could be a long time before the king has the data he needs.</p>
+
+<p><img class="img-left" src="/images/posts/gw-w-speech.png" width="450px" height="825px" alt="'Statue of George Washington with Speech Bubble'" title="N+1 is N+Nothing to the General" /> General Washington was also sure that war was imminent.  Mobs don’t tear down statues and turn them into 42,088 ‘patriot bullets’ without intending to use them.  Like King George, George Washington wanted to make sure that his army was ready to fight.</p>
+
+<p>“Smith!” he said in a very general-esque fashion, “Gather the troops.  I need some information from them.”  Smith started to leave when the general (a man with legendary critical thinking skills) called him back.  “Smith…when you gather the troops, it’s probably a good idea for you to grab their unit data too.  That way we can easily find out where they are currently stationed without using up too much extra time.”</p>
+
+<p>Smith (like Smythe) was a very forward-thinking fellow and decided to build a Rails app of his own.  As you can imagine, their models were identical:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#in the models</span>
+
+<span class="c1">#Soldier model</span>
+<span class="k">class</span> <span class="nc">Soldier</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">belongs_to</span> <span class="ss">:unit</span>
+<span class="k">end</span>
+ 
+<span class="c1">#Unit model</span>
+<span class="k">class</span> <span class="nc">Unit</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">has_many</span> <span class="ss">:soldiers</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>But when he made his controller, Smith followed the general’s sage advice and used eager loading.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#In our controller</span>
+<span class="vi">@continental_army</span> <span class="o">=</span> <span class="no">Soldier</span><span class="p">.</span><span class="nf">includes</span><span class="p">(</span><span class="ss">:unit</span><span class="p">).</span><span class="nf">all</span>
+ 
+<span class="c1">#in our view file</span>
+<span class="vi">@continental_army</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">soldier</span><span class="o">|</span>
+    <span class="no">Name</span><span class="p">:</span> <span class="o">&lt;</span><span class="sx">%= soldier.name %&gt; 
+    Location:&lt;%=</span> <span class="n">soldier</span><span class="p">.</span><span class="nf">unit</span><span class="p">.</span><span class="nf">location</span> <span class="sx">%&gt;
+end
+</span></code></pre></div></div>
+<p>On the first call to the database, Smith’s program gathers all the soldiers, same as Smythe’s program.  Advantage?  No one.  However, on the second call to the database, Smith’s program loads up all of the unit data.  Now, as the view loops through each of the soldiers, a soldier’s name and location can be provided without any further database queries.</p>
+
+<p>General Washington received the important data about his troop locations much sooner and the rest was history (9 brutal, war filled years of history).</p>
+
+<p>So the next time someone tells you your app has an N + 1 problem, don’t shrug it off thinking it doesn’t matter.  It might not just be the scalability of your app that’s on the line, it could very well be the fate of the entire freaking world.  Don’t mess it up!</p>
+
+<p><em>*Some of the history shared here may not be entirely accurate.  George Washington probably didn’t invent a solution to the N+1 problem and Smith and Smythe probably weren’t building Rails apps.  If you’re building a Rails app though, you should care about N+1.  Learn more about Eager Loading by reading the <a href="http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord::Associations::ClassMethods-label-Eager+loading+of+associations">ActiveRecord documentation</a>.</em></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="full light-grey">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        Comments
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <div class='comments-wrapper'>
+        <ul class='comments'>
+          <li>
+            <div class='meta'>
+              <p class='avatar'>
+                <img width="39" height="39" alt="" src="/images/avatar.png" />
+              </p>
+              <p class='info'>
+                <span class='name'>Amy</span>
+                <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+                <a href='#comment-form'>Reply</a>
+              </p>
+            </div>
+            <p>
+              Dolor consectetur et dolorem distinctio beatae doloribus magni ducimus reprehenderit voluptatibus ex officia quia. cum facere est quas provident ea nam quibusdam deserunt quis. error quis nihil ad quia corrupti asperiores labore quis error ut debitis nobis iste. laborum sint qui aut asperiores numquam itaque ea illum
+            </p>
+          </li>
+          <li>
+            <div class='meta'>
+              <p class='avatar'>
+                <img width="39" height="39" alt="" src="/images/avatar.png" />
+              </p>
+              <p class='info'>
+                <span class='name'>Amy</span>
+                <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+                <a href='#comment-form'>Reply</a>
+              </p>
+            </div>
+            <p>Quam cumque magni voluptas. possimus neque in voluptates.</p>
+            <ul class='children'>
+              <li>
+                <div class='meta'>
+                  <p class='avatar'>
+                    <img width="39" height="39" alt="" src="/images/avatar.png" />
+                  </p>
+                  <p class='info'>
+                    <span class='name'>Amy</span>
+                    <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+                    <a href='#comment-form'>Reply</a>
+                  </p>
+                </div>
+                <p>Quas ut vel nobis veniam explicabo consequatur. iusto nisi eius iure voluptas perferendis omnis quod excepturi et eum. sed porro tenetur ut unde suscipit optio ipsum molestiae</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <div class='meta'>
+              <p class='avatar'>
+                <img width="39" height="39" alt="" src="/images/avatar.png" />
+              </p>
+              <p class='info'>
+                <span class='name'>Amy</span>
+                <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+                <a href='#comment-form'>Reply</a>
+              </p>
+            </div>
+            <p>Saepe laudantium ipsum labore dolorum officia et odio debitis et. consequatur non veniam deserunt rerum nihil sint est</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="full">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        Your comments
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <div class='two spacing'></div>
+      <div id='comments-form'>
+        <form class="dark" accept-charset='UTF-8' action='#' method='post'>
+          <p class='name'>
+            <input class='input-text required' id='name' name='name' type='text' placeholder='Name'>
+          </p>
+          <p class='email'>
+            <input class='input-text required' id='email' name='email' type='text' placeholder='Email'>
+          </p>
+          <p class='message'>
+            <textarea class='required' id='message' name='message' placeholder='Message'></textarea>
+          </p>
+          <div class='spacing'></div>
+          <p>
+            <input class='button boxed small' type='submit' value='Send Message'>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="full light-grey">
+  <nav class='wrapper'>
+    <div class="row">
+      <div class="small-6 columns">
+        
+          <a class="previous button boxed black" href='/linguistics/python/ruby/2014/07/08/teaching-a-computer-ancient-greek.html'>
+            <i class='fa fa-angle-left'></i> Previous post
+          </a>
+        
+
+      </div>
+      <div class="small-6 columns">
+        
+          <a class="next button boxed black" href='/ajax/xml/json/2014/08/28/ajax-get-to-know-your-asynchronous-friend.html'>
+            Next post<i class='fa fa-angle-right'></i>
+          </a>
+        
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+    <div class="full no-padding footer brown centered-text">
+  <div class="four spacing"></div>
+  <div class="row">
+    <div class="small-12 columns">
+      <ul class="socials">
+        <li><a href="#"><i class='fa fa-twitter'></i></a></li>
+        <li><a href="#"><i class='fa fa-linkedin'></i></a></li>
+      </ul>
+      <p>Copyright ©2015 L'AVAR.</p>
+      <p>All rights reserved.</p>
+      <div class="four spacing"></div>
+      <p class="back-to-top"><a href="#"><i class="fa fa-chevron-up"></i>Back to top</a></p>
+    </div>
+  </div>
+  <div class="spacing"></div>
+</div>
+
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/foundation/js/foundation.min.js"></script>
+<script src="/js/jquery.superslides.min.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/jquery.validate.js"></script>
+<script src="/bower_components/countto/jquery.countTo.js"></script>
+<script src="/bower_components/appear/jquery.appear.js"></script>
+<script src="/js/app.js"></script>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>AJAX - Get to Know Your Asynchronous Friend</title>
+  <meta name="description" content="AJAX!  It's a small acronoym for a heavy weight in the world of web development. It stands for **A**synchronous **J**avascript **a**nd **X**ML.">
+
+
+  <link rel="stylesheet" href="/css/app.css">
+  <link href="http://fonts.googleapis.com/css?family=Josefin+Sans:400,700,600,300" media="screen" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="/css/superslides.css"/>
+  <link rel="stylesheet" href="/css/slick-theme.css"/>
+  <link rel="stylesheet" href="/css/slick.css"/>
+  <link rel="stylesheet" href="/css/animate.css"/>
+  <link rel="stylesheet" href="/css/linea-styles.css"/>
+  <link rel="stylesheet" href="/css/linea-arrows-styles.css"/>
+  <link rel="stylesheet" href="/css/font-awesome.css"/>
+  <link rel="stylesheet" href="/css/chivo.css"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/responsive.css"/>
+
+  <script src="/bower_components/modernizr/modernizr.js"></script>
+
+  <link rel="canonical" href="/ajax/xml/json/2014/08/28/ajax-get-to-know-your-asynchronous-friend.html">
+  <link rel="alternate" type="application/rss+xml" title="L'AVAR" href="/feed.xml">
+</head>
+
+
+  <body>
+
+    <div class='contain-to-grid sticky transparent'>
+  <nav class='top-bar' data-options='sticky_on: large' data-topbar=''>
+    <ul class='title-area'>
+      <li class="">
+        <h1>
+          <a href='/index.html'>
+            <span>L.</span>avar
+          </a>
+        </h1>
+      </li>
+    </ul>
+    <div id="menu-toggler" class="right">
+      <a href='#'>
+        <i class="icon-arrows-hamburger-2"></i>
+      </a>
+    </div>
+    <section class='top-bar-section closed'>
+      <ul class='right'>
+
+        
+          
+
+          
+            <li class="has-dropdown ">
+              <a href="/index.html">Home</a>
+              <ul class='dropdown'>
+                
+                  <li>
+                    <a href="/index.html">Home Studio</a>
+                  </li>
+                
+                  <li>
+                    <a href="/index-personal.html">Home Personal</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+
+          
+            <li class="has-dropdown ">
+              <a href="/about.html">Pages</a>
+              <ul class='dropdown'>
+                
+                  <li>
+                    <a href="/about.html">About Us</a>
+                  </li>
+                
+                  <li>
+                    <a href="/services.html">Services</a>
+                  </li>
+                
+                  <li>
+                    <a href="/services-2.html">Services 2</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+
+          
+            <li class="has-dropdown ">
+              <a href="/portfolio.html">Works</a>
+              <ul class='dropdown'>
+                
+                  <li>
+                    <a href="/portfolio.html">Portfolio Style 1</a>
+                  </li>
+                
+                  <li>
+                    <a href="/portfolio-2.html">Portfolio Style 2</a>
+                  </li>
+                
+                  <li>
+                    <a href="/portfolio-item.html">Single Page 1</a>
+                  </li>
+                
+                  <li>
+                    <a href="/portfolio-item-2.html">Single Page 2</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+
+          
+            <li class="">
+              <a href="/contact.html">Contact</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="has-dropdown ">
+              <a href="/blog.html">Blog</a>
+              <ul class='dropdown'>
+                
+                  <li>
+                    <a href="/blog/">Blog</a>
+                  </li>
+                
+                  <li>
+                    <a href="/travel/2016/04/06/beautiful-day.html">Single Page</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+
+      </ul>
+    </section>
+  </nav>
+</div>
+
+
+    <div class="full">
+  <div class="post single">
+    
+      <div class="post-header" style="background-image: url(/images/@stock/post-7.jpg)">
+      </div>
+    
+    <div class="four spacing"></div>
+    <div class="row">
+      <div class="large-9 large-centered columns">
+        <div class="post-content">
+          <h2>AJAX - Get to Know Your Asynchronous Friend</h2>
+          <p class='info'>
+            
+              <span>
+                
+                  <a href="#">Ajax</a>
+                  
+                      ,
+                  
+                
+                  <a href="#">Xml</a>
+                  
+                      ,
+                  
+                
+                  <a href="#">Json</a>
+                  
+                
+              </span>
+              /
+            
+            <span>August 28, 2014</span>
+            /
+            <span><a href="#">2 Comments</a></span>
+          </p>
+          <p>AJAX!  It’s a small acronoym for a heavy weight in the world of web development.</p>
+
+<p>It stands for <strong>A</strong>synchronous <strong>J</strong>avascript <strong>a</strong>nd <strong>X</strong>ML.  Which is a fancy way of saying that you can use Javascript and XML (and now JSON or even plain text) to send and receive data on a webpage without having to send the user to a new page or interrupt the activity on the current page.</p>
+
+<p>Here’s an example of a simple AJAX call made in jQuery (taken from the <a href="http://en.wikipedia.org/wiki/Ajax_\(programming\)">AJAX wikipedia page</a>):</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s1">'send-ajax-data.php'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Let’s follow this AJAX call on it’s journey through the stack:</p>
+
+<ol>
+  <li>The visitor initially comes to the page where the jQuery is hanging out</li>
+  <li>The jQuery code is activated (usually when the page loads or a button is pressed depending on how the code is written)</li>
+  <li>A GET request is sent to the ‘send-ajax-data.php’ page using an XMLHttpRequest object (which is what allows the request to be made asynchronously)</li>
+  <li>The ‘send-ajax-data.php’ page receives the request and sends a response as XML, JSON, a Javascript file or plain text</li>
+  <li>The initial page the visitor is on opens an alert window which displays the data it received as a response</li>
+</ol>
+
+<p>Thanks to the XMLHttpRequest object, this is all done behind the scenes while the visitor is still able to interact with the initial page that they are on.</p>
+
+<p>Here’s a bit more complex example from a recent project I worked on.  The AJAX call hits the Weather Underground hourly data page for NY and returns a JSON object with a ton of data including the temperature, the UV index, wind speed/direction and more.</p>
+
+<p>I parse that data in the sucess callback, pulling out only what I need for my project.  This data is then used (in a non-excerpted part of the code) to make an hourly graph of the temperature for the past 24 hours.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span> 
+  <span class="na">url</span><span class="p">:</span> <span class="s2">"http://api.wunderground.com/api/API_KEY/hourly/q/NY/New_York.json"</span><span class="p">,</span> 
+  <span class="na">dataType</span><span class="p">:</span> <span class="s1">'jsonp'</span><span class="p">,</span> 
+  <span class="na">success</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">weather_data_full</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">weather_data_parsed</span> <span class="o">=</span> <span class="nx">weather_data_full</span><span class="p">[</span><span class="s1">'hourly_forecast'</span><span class="p">],</span>
+        <span class="nx">hourData</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="nx">tempData</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">weather_data_parsed</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">hourData</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">weather_data_parsed</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s1">'FCTTIME'</span><span class="p">][</span><span class="s1">'hour'</span><span class="p">]),</span>
+        <span class="nx">tempData</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">weather_data_parsed</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s1">'temp'</span><span class="p">][</span><span class="s1">'english'</span><span class="p">]);</span>
+        <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div></div>
+<p>As you can see, there’s more going on, but, at it’s core, it’s the same as the simpler AJAX request above.</p>
+
+<p>AJAX is definitely useful, but I don’t want to pretend it’s all sunshine and roses.  This isn’t the first technology in history that magically has no tradeoffs.  Here are some of the issues you should consider when deciding whether or not to utilize AJAX:</p>
+
+<ul>
+  <li>
+    <p>Things are happening on a single page so there are no permalinks people can use for bookmarking that specific content on your site.  <strong>PJAX</strong> attempts to address this by providing permalink functionality to AJAX requests, but AJAX itself won’t cut it.</p>
+  </li>
+  <li>
+    <p>The asynchronisity that makes AJAX so awesome and useful also makes it very hard to test and debug when something goes wrong.  When lines of code are executed in a nice, clean order, it’s easier to track down the issue.  AJAX does what it wants, when it wants (not exactly, but you get the idea).  Did something break because the AJAX request isn’t correct?  Because the AJAX fired too soon?  Because the AJAX fired too late?  Because of something not at all related to the AJAX and you need to stop blaming Javascript for everything??!?  Have fun spending the next 5 hours of your life figuring that one out.</p>
+  </li>
+  <li>
+    <p>Web crawlers usually ignore javascript (and flash and anything else besides text and HTML you’ve added to your site to make it interesting).  If you’re loading key content through AJAX, the crawler won’t see it unless you provide it with an alternative way to get that content.  You can pretend you’re too cool for webcrawlers, but, at the end of the day, if you’re not aready a hot destination on the internet, you’ll need search engines to bring you traffic.</p>
+  </li>
+</ul>
+
+<p>What interesting uses of AJAX have you seen?  Have you had any hilarious (or frustrating) AJAX experiences (like Catherine with her <a href="http://anunexpectedcoder.com/blog/2014/08/10/premature-ajaxulation/">Premature AJAXulation</a>)?  Let me know in the comments!</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="full light-grey">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        Comments
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <div class='comments-wrapper'>
+        <ul class='comments'>
+          <li>
+            <div class='meta'>
+              <p class='avatar'>
+                <img width="39" height="39" alt="" src="/images/avatar.png" />
+              </p>
+              <p class='info'>
+                <span class='name'>Amy</span>
+                <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+                <a href='#comment-form'>Reply</a>
+              </p>
+            </div>
+            <p>
+              Dolor consectetur et dolorem distinctio beatae doloribus magni ducimus reprehenderit voluptatibus ex officia quia. cum facere est quas provident ea nam quibusdam deserunt quis. error quis nihil ad quia corrupti asperiores labore quis error ut debitis nobis iste. laborum sint qui aut asperiores numquam itaque ea illum
+            </p>
+          </li>
+          <li>
+            <div class='meta'>
+              <p class='avatar'>
+                <img width="39" height="39" alt="" src="/images/avatar.png" />
+              </p>
+              <p class='info'>
+                <span class='name'>Amy</span>
+                <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+                <a href='#comment-form'>Reply</a>
+              </p>
+            </div>
+            <p>Quam cumque magni voluptas. possimus neque in voluptates.</p>
+            <ul class='children'>
+              <li>
+                <div class='meta'>
+                  <p class='avatar'>
+                    <img width="39" height="39" alt="" src="/images/avatar.png" />
+                  </p>
+                  <p class='info'>
+                    <span class='name'>Amy</span>
+                    <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+                    <a href='#comment-form'>Reply</a>
+                  </p>
+                </div>
+                <p>Quas ut vel nobis veniam explicabo consequatur. iusto nisi eius iure voluptas perferendis omnis quod excepturi et eum. sed porro tenetur ut unde suscipit optio ipsum molestiae</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <div class='meta'>
+              <p class='avatar'>
+                <img width="39" height="39" alt="" src="/images/avatar.png" />
+              </p>
+              <p class='info'>
+                <span class='name'>Amy</span>
+                <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+                <a href='#comment-form'>Reply</a>
+              </p>
+            </div>
+            <p>Saepe laudantium ipsum labore dolorum officia et odio debitis et. consequatur non veniam deserunt rerum nihil sint est</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="full">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        Your comments
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <div class='two spacing'></div>
+      <div id='comments-form'>
+        <form class="dark" accept-charset='UTF-8' action='#' method='post'>
+          <p class='name'>
+            <input class='input-text required' id='name' name='name' type='text' placeholder='Name'>
+          </p>
+          <p class='email'>
+            <input class='input-text required' id='email' name='email' type='text' placeholder='Email'>
+          </p>
+          <p class='message'>
+            <textarea class='required' id='message' name='message' placeholder='Message'></textarea>
+          </p>
+          <div class='spacing'></div>
+          <p>
+            <input class='button boxed small' type='submit' value='Send Message'>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="full light-grey">
+  <nav class='wrapper'>
+    <div class="row">
+      <div class="small-6 columns">
+        
+          <a class="previous button boxed black" href='/n-plus-1/sql/activerecord/2014/07/20/a-tale-of-two-georges-refactoring-history.html'>
+            <i class='fa fa-angle-left'></i> Previous post
+          </a>
+        
+
+      </div>
+      <div class="small-6 columns">
+        
+          <a class="next button boxed black" href='/programming/flatiron-school/2015/01/01/new-years-resolutions.html'>
+            Next post<i class='fa fa-angle-right'></i>
+          </a>
+        
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+    <div class="full no-padding footer brown centered-text">
+  <div class="four spacing"></div>
+  <div class="row">
+    <div class="small-12 columns">
+      <ul class="socials">
+        <li><a href="#"><i class='fa fa-twitter'></i></a></li>
+        <li><a href="#"><i class='fa fa-linkedin'></i></a></li>
+      </ul>
+      <p>Copyright ©2015 L'AVAR.</p>
+      <p>All rights reserved.</p>
+      <div class="four spacing"></div>
+      <p class="back-to-top"><a href="#"><i class="fa fa-chevron-up"></i>Back to top</a></p>
+    </div>
+  </div>
+  <div class="spacing"></div>
+</div>
+
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/foundation/js/foundation.min.js"></script>
+<script src="/js/jquery.superslides.min.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/jquery.validate.js"></script>
+<script src="/bower_components/countto/jquery.countTo.js"></script>
+<script src="/bower_components/appear/jquery.appear.js"></script>
+<script src="/js/app.js"></script>
+
+
+  </body>
+
+</html>
