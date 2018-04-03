@@ -6,8 +6,8 @@
 </description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 20 Jan 2018 16:38:35 -0800</pubDate>
-    <lastBuildDate>Sat, 20 Jan 2018 16:38:35 -0800</lastBuildDate>
+    <pubDate>Mon, 02 Apr 2018 20:02:47 -1000</pubDate>
+    <lastBuildDate>Mon, 02 Apr 2018 20:02:47 -1000</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -29,7 +29,7 @@
 
 &lt;p&gt;Keep love in your heart. A life without it is like a sunless garden when the flowers are dead. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, mollitia! Animi et dolore ab ratione cupiditate totam error ducimus, reiciendis voluptatum praesentium dignissimos vitae nostrum autem similique unde minus deleniti.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 05 Apr 2016 15:48:03 -0700</pubDate>
+        <pubDate>Tue, 05 Apr 2016 12:48:03 -1000</pubDate>
         <link>/travel/life/2016/04/05/new-way-new-life.html</link>
         <guid isPermaLink="true">/travel/life/2016/04/05/new-way-new-life.html</guid>
         
@@ -59,7 +59,7 @@
 
 &lt;p&gt;Keep love in your heart. A life without it is like a sunless garden when the flowers are dead. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, mollitia! Animi et dolore ab ratione cupiditate totam error ducimus, reiciendis voluptatum praesentium dignissimos vitae nostrum autem similique unde minus deleniti.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 05 Apr 2016 15:47:03 -0700</pubDate>
+        <pubDate>Tue, 05 Apr 2016 12:47:03 -1000</pubDate>
         <link>/travel/2016/04/05/new-way-new-move.html</link>
         <guid isPermaLink="true">/travel/2016/04/05/new-way-new-move.html</guid>
         
@@ -95,7 +95,7 @@
 
 &lt;p&gt;And, because I miss running (and I like to commit to doing things daily), I’m bringing back my 2014 goal of running every day for a year.  In 2013 I only made it 6 months.  In 2014 I made it 9.5.  2015 feels like my year!&lt;/p&gt;
 </description>
-        <pubDate>Thu, 01 Jan 2015 18:24:53 -0800</pubDate>
+        <pubDate>Thu, 01 Jan 2015 16:24:53 -1000</pubDate>
         <link>/programming/flatiron-school/2015/01/01/new-years-resolutions.html</link>
         <guid isPermaLink="true">/programming/flatiron-school/2015/01/01/new-years-resolutions.html</guid>
         
@@ -167,7 +167,7 @@
 
 &lt;p&gt;What interesting uses of AJAX have you seen?  Have you had any hilarious (or frustrating) AJAX experiences (like Catherine with her &lt;a href=&quot;http://anunexpectedcoder.com/blog/2014/08/10/premature-ajaxulation/&quot;&gt;Premature AJAXulation&lt;/a&gt;)?  Let me know in the comments!&lt;/p&gt;
 </description>
-        <pubDate>Thu, 28 Aug 2014 15:33:35 -0700</pubDate>
+        <pubDate>Thu, 28 Aug 2014 12:33:35 -1000</pubDate>
         <link>/ajax/xml/json/2014/08/28/ajax-get-to-know-your-asynchronous-friend.html</link>
         <guid isPermaLink="true">/ajax/xml/json/2014/08/28/ajax-get-to-know-your-asynchronous-friend.html</guid>
         
@@ -269,7 +269,7 @@ end
 
 &lt;p&gt;&lt;em&gt;*Some of the history shared here may not be entirely accurate.  George Washington probably didn’t invent a solution to the N+1 problem and Smith and Smythe probably weren’t building Rails apps.  If you’re building a Rails app though, you should care about N+1.  Learn more about Eager Loading by reading the &lt;a href=&quot;http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord::Associations::ClassMethods-label-Eager+loading+of+associations&quot;&gt;ActiveRecord documentation&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 </description>
-        <pubDate>Sun, 20 Jul 2014 15:26:51 -0700</pubDate>
+        <pubDate>Sun, 20 Jul 2014 12:26:51 -1000</pubDate>
         <link>/n-plus-1/sql/activerecord/2014/07/20/a-tale-of-two-georges-refactoring-history.html</link>
         <guid isPermaLink="true">/n-plus-1/sql/activerecord/2014/07/20/a-tale-of-two-georges-refactoring-history.html</guid>
         
@@ -585,7 +585,7 @@ english_sentences( ((‘I’, ‘am’, ‘not’, ‘happy’) , (‘You’, �
 &lt;p&gt;That’s when I discovered Google Translate doesn’t have an Ancient Greek option.  Apparently the folks at Google are too self absorbed to anticipate that I might one day need to do a random translation of Ancient Greek so it never got built into their free web app.  The nerve!
 So, for now, the participants in the International Linguistics Olympiad can breath easy.  They won’t be replaced by a computer….yet!&lt;/p&gt;
 </description>
-        <pubDate>Tue, 08 Jul 2014 15:13:51 -0700</pubDate>
+        <pubDate>Tue, 08 Jul 2014 12:13:51 -1000</pubDate>
         <link>/linguistics/python/ruby/2014/07/08/teaching-a-computer-ancient-greek.html</link>
         <guid isPermaLink="true">/linguistics/python/ruby/2014/07/08/teaching-a-computer-ancient-greek.html</guid>
         
@@ -629,7 +629,7 @@ So, for now, the participants in the International Linguistics Olympiad can brea
 
 &lt;p&gt;If you would like to volunteer to help out at BASE, &lt;a href=&quot;http://www.imentor.org/become-a-mentor&quot;&gt;go here&lt;/a&gt; and complete the application (being sure to mention BASE in the application).  If you’re not Bronx-adjacent, don’t worry, there will be plenty of opportunities to volunteer in your area - just spend a bit of time searching and you’ll find a program that will be a good fit for you.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 29 Jun 2014 15:11:21 -0700</pubDate>
+        <pubDate>Sun, 29 Jun 2014 12:11:21 -1000</pubDate>
         <link>/base/teaching/2014/06/29/a-fun-way-to-help-out.html</link>
         <guid isPermaLink="true">/base/teaching/2014/06/29/a-fun-way-to-help-out.html</guid>
         
@@ -728,7 +728,7 @@ things_liked(&quot;Hyena&quot;, hyena)
 
 &lt;p&gt;So we’ll have to say no to peppering our code with splat just for the pure joy we get from yelling splat every time we type it but we’ll never again have to be afraid to use it appropriately in our code.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 24 Jun 2014 16:00:25 -0700</pubDate>
+        <pubDate>Tue, 24 Jun 2014 13:00:25 -1000</pubDate>
         <link>/code/ruby/2014/06/24/ruby-and-the-amazing-splat.html</link>
         <guid isPermaLink="true">/code/ruby/2014/06/24/ruby-and-the-amazing-splat.html</guid>
         
@@ -790,7 +790,7 @@ things_liked(&quot;Hyena&quot;, hyena)
 
 &lt;p&gt;I’ll let you know how it goes!&lt;/p&gt;
 </description>
-        <pubDate>Tue, 10 Jun 2014 10:45:38 -0700</pubDate>
+        <pubDate>Tue, 10 Jun 2014 07:45:38 -1000</pubDate>
         <link>/open-source/2014/06/10/contributing-to-open-source.html</link>
         <guid isPermaLink="true">/open-source/2014/06/10/contributing-to-open-source.html</guid>
         
